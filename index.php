@@ -146,48 +146,77 @@ class Index
         // //取巧思路：余数为1 的不能和余数为2的在一起，余数为0的只能有一个。
         // //
 
-        $arr = [6,5,1,4,4];
-        $k=8;
-        // $map = [
-        //     '0' => 0,
-        //     '1' => 0,
-        //     '2' => 0,
-        // ];
-        $map = [];
-        for($i = 0; $i<$k;$i++){        //n
-            $map[$i] = 0;
-        }
-
-        foreach ($arr as $key => $value) {  //n
-            // $tmp = $value % 3;
-            $tmp = $value %$k;
-            $map[$tmp]++;
-        }
-        $max = 0;
-        for($i =1; $i<($k+1)/2;$i++) {   //  n/2
-            if ($i == $k-$i) {
-                if ($map[$i] !=0) {
-                    $max = $max + 1;
-                }
-                break;
-            }
-            if ($map[$i]>$map[$k-$i]) {
-                $max = $map[$i] +$max;
-            }else{
-                $max = $map[$k-$i] +$max;
-            }
-        }
-        // if ($map['1']>$map['2']) {
-        //     $max = $map['1'];
-        // }else{
-        //     $max = $map['2'];
+        // $arr = [6,5,1,4,4];
+        // $k=8;
+        // // $map = [
+        // //     '0' => 0,
+        // //     '1' => 0,
+        // //     '2' => 0,
+        // // ];
+        // $map = [];
+        // for($i = 0; $i<$k;$i++){        //n
+        //     $map[$i] = 0;
         // }
-        var_dump($map);
-        if ($map['0']!=0) {
-            $max++;
+
+        // foreach ($arr as $key => $value) {  //n
+        //     // $tmp = $value % 3;
+        //     $tmp = $value %$k;
+        //     $map[$tmp]++;
+        // }
+        // $max = 0;
+        // for($i =1; $i<($k+1)/2;$i++) {   //  n/2
+        //     if ($i == $k-$i) {
+        //         if ($map[$i] !=0) {
+        //             $max = $max + 1;
+        //         }
+        //         break;
+        //     }
+        //     if ($map[$i]>$map[$k-$i]) {
+        //         $max = $map[$i] +$max;
+        //     }else{
+        //         $max = $map[$k-$i] +$max;
+        //     }
+        // }
+        // // if ($map['1']>$map['2']) {
+        // //     $max = $map['1'];
+        // // }else{
+        // //     $max = $map['2'];
+        // // }
+        // var_dump($map);
+        // if ($map['0']!=0) {
+        //     $max++;
+        // }
+        // echo "integer:  {$max}";
+        //
+        //case 7:
+        //
+        // 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+
+        // 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+
+        // 示例:
+
+        // 给定 nums = [2, 7, 11, 15], target = 9
+
+        // 因为 nums[0] + nums[1] = 2 + 7 = 9
+        // 所以返回 [0, 1]
+        // 
+        // 
+        $nums   = [2, 7, 11, 34,15,4,5];
+        $target = 9;
+
+        $tmp    =[];
+        $keys   = [];
+        foreach ($nums as $k => $v) {
+            if (isset($tmp[$target-$v])) {
+                $keys   = [$tmp[$target - $v],$k];
+                break;
+            //   $keys[] = [$tmp[$target-$v],$k];
+            }else{
+                $tmp[$v] = $k;
+            }
         }
-        echo "integer:  {$max}";
-        
+        var_dump($keys);
 
     }
 
